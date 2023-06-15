@@ -1,11 +1,11 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:baby_talk/screens/home_screen.dart';
-import 'package:baby_talk/screens/mobile_register_screen.dart';
+import 'package:baby_talk/screens/home-screen.dart';
+import 'package:baby_talk/screens/mobile-register-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'screens/intro_screen.dart';
+import 'screens/intro-screen.dart';
 
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-babytalk-dev-182510-authRole",
+      "UnauthRoleArn": "arn:aws:iam::663149949133:role/amplify-babytalk-dev-182510-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::663149949133:role/amplify-babytalk-dev-182510-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-babytalk-dev-182510-deployment",
+      "UnauthRoleName": "amplify-babytalk-dev-182510-unauthRole",
+      "StackName": "amplify-babytalk-dev-182510",
+      "StackId": "arn:aws:cloudformation:eu-north-1:663149949133:stack/amplify-babytalk-dev-182510/f03f1f20-00a0-11ee-8836-0642856badbc",
+      "AmplifyAppId": "d31ll341jcdgxv"
+    },
+    "categories": {
+      "auth": {
+        "babytalk2202ae73": {}
+      }
+    }
+  }
+}
