@@ -1,6 +1,6 @@
 {
-    "name": "baby_talk",
-    "short_name": "baby_talk",
+    "name": "baby_cry",
+    "short_name": "baby_cry",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
