@@ -27,10 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       body: Stack(
-        // colomn
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           PageView(
             controller: controller,
@@ -79,15 +76,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
           ),
 
-          //if user logged in -> don't show continue with
+          //if user logged in -> don't show "continue with"
           FutureBuilder<AuthUser?>(
             future: context.read<UserProvider>().checkedLogedInUser(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                // made a simple mistake here
-                // Let's restart the app
-                // Perfect
-                // But it's not shift the screen once user is loged out
                 if (snapshot.data != null) {
                   Future.delayed(
                     const Duration(seconds: 1),
@@ -118,7 +111,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       Container(
-                        // alignment: const Alignment(0, 0.65),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 50),
@@ -165,7 +157,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                       Container(
                         padding: EdgeInsets.only(top: 20, bottom: 35),
-                        // alignment: const Alignment(0, 0.85),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

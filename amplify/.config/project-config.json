@@ -1,13 +1,17 @@
 {
   "projectName": "babytalk",
   "version": "3.1",
-  "frontend": "flutter",
-  "flutter": {
-    "config": {
-      "ResDir": "./lib/"
-    }
-  },
+  "frontend": "javascript",
   "providers": [
     "awscloudformation"
-  ]
+  ],
+  "javascript": {
+    "framework": "none",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist",
+      "BuildCommand": "npm.cmd run-script build",
+      "StartCommand": "npm.cmd run-script start"
+    }
+  }
 }
