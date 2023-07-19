@@ -27,10 +27,13 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<Either<String, bool>> confirmSignUp(
-      {required String username, required String code}) async {
+      {required String username,
+      required String password,
+      required String code}) async {
     _setIsLoading(true);
     final response = await _userRepositiry.confirmSignUp(
       username: username,
+      password: password,
       code: code,
     );
     _setIsLoading(false);
@@ -51,7 +54,7 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<AuthUser?> checkedLogedInUser() async {
-    final authSession = await _userRepositiry.isUserLogedIn();
+    final authSession = await _userRepositiry.isUserLoggedIn();
 
     if (authSession.isSignedIn) {
       _currentUser = await _userRepositiry.getCurrentUser();

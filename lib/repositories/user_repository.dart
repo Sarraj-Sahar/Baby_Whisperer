@@ -2,6 +2,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:dartz/dartz.dart';
 
 class UserRepository {
+  //signUp user
   Future<Either<String, SignUpResult>> signUp(
       String username, String email, String password) async {
     final Map<AuthUserAttributeKey, String> userAttributes = {
@@ -10,8 +11,8 @@ class UserRepository {
 
     try {
       final result = await Amplify.Auth.signUp(
-        username: username,
-        password: password,
+        username: username.trim(),
+        password: password.trim(),
         options: SignUpOptions(userAttributes: userAttributes),
       );
       return right(result);
@@ -20,25 +21,32 @@ class UserRepository {
     }
   }
 
+  //confirm user with amplify's confirmSignUp
   Future<Either<String, bool>> confirmSignUp(
-      {required String username, required String code}) async {
+      {required String username,
+      required String password,
+      required String code}) async {
     try {
       final result = await Amplify.Auth.confirmSignUp(
-        username: username,
-        confirmationCode: code,
+        // adding the .trim() to ignore whitespaces
+        username: username.trim(),
+        confirmationCode: code.trim(),
       );
       return right(result.isSignUpComplete);
+      //TOREMOVE : @sahar remove this
+      // signIn(username: username, password: password);
     } on AuthException catch (e) {
       return left(e.message);
     }
   }
 
+  //signIn user with username and pwd
   Future<Either<String, SignInResult>> signIn(
       {required String username, required String password}) async {
     try {
       final result = await Amplify.Auth.signIn(
-        username: username,
-        password: password,
+        username: username.trim(),
+        password: password.trim(),
       );
       return right(result);
     } on AuthException catch (e) {
@@ -46,18 +54,17 @@ class UserRepository {
     }
   }
 
-  // Plan is to check is user loged in or not
-  Future<AuthSession> isUserLogedIn() {
+  //Check if user is logged in
+  Future<AuthSession> isUserLoggedIn() {
     return Amplify.Auth.fetchAuthSession();
   }
 
-  // If user is loged in then fetch the user
+  //If user is logged in then fetch the user
   Future<AuthUser> getCurrentUser() {
     return Amplify.Auth.getCurrentUser();
   }
 
-  // Last thing is to sign out the user
-  // we can make it better
+  //Sign out user
   Future<SignOutResult> signOut() {
     return Amplify.Auth.signOut();
   }
