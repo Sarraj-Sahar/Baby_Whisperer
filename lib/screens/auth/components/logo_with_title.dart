@@ -1,4 +1,4 @@
-import 'package:baby_cry/shared/constants.dart';
+import 'package:baby_cry/shared/shared.dart';
 import 'package:flutter/material.dart';
 
 class LogoWithTitle extends StatelessWidget {

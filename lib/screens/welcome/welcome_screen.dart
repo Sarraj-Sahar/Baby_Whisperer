@@ -1,24 +1,37 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+// import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+// import 'package:amplify_flutter/amplify_flutter.dart';
+// import 'package:baby_cry/providers/user_provider.dart';
+// import 'package:baby_cry/screens/auth/sign_in_screen.dart';
+// import 'package:baby_cry/screens/auth/sign_up_email_screen.dart';
+// import 'package:baby_cry/screens/home/home_screen.dart';
+// import 'package:baby_cry/shared/constants.dart';
+// import 'package:baby_cry/widgets/round_tile.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+// import 'components/build_splash_page.dart';
+
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:baby_cry/providers/user_provider.dart';
 import 'package:baby_cry/screens/auth/sign_in_screen.dart';
-import 'package:baby_cry/screens/auth/sign_up_email_screen.dart';
 import 'package:baby_cry/screens/home/home_screen.dart';
-import 'package:baby_cry/shared/constants.dart';
+import 'package:baby_cry/screens/welcome/components/build_splash_page.dart';
+import 'package:baby_cry/shared/shared.dart';
 import 'package:baby_cry/widgets/round_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'components/build_splash_page.dart';
-import 'package:provider/provider.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends ConsumerStatefulWidget {
+  WelcomeScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
+  ConsumerState<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
   PageController controller = PageController();
 
   bool isLastPage = false;
@@ -39,6 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               });
             },
             children: [
+              //STYLE: move text and imgs string constants
               BuildSplashPage(
                 img: 'assets/baby_splash_1.jpg',
                 description: 'Welcome Back ! ',
@@ -59,6 +73,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ],
           ),
           Container(
+            //STYLE : move container
             alignment: const Alignment(0, 0.275),
             child: SmoothPageIndicator(
               controller: controller,
@@ -78,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
           //if user logged in -> don't show "continue with"
           FutureBuilder<AuthUser?>(
-            future: context.read<UserProvider>().checkedLogedInUser(),
+            future: ref.read<UserProvider>(userProvider).checkedLogedInUser(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.data != null) {
@@ -90,7 +105,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
+                              builder: (context) => HomeScreen(
+                                selectedIndex: 0,
+                              ),
                             ),
                             (route) => false,
                           );
@@ -121,19 +138,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               RoundTile(
                                   imagePath: "assets/Google_Logo.svg",
                                   ontap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SignUpEmailScreen(),
-                                      ),
-                                    );
-                                  }
-
-                                  // ontap: () {
-                                  //   Navigator.pushNamed(context, '/home');
-                                  // }
-                                  ),
+                                    Navigator.pushNamed(
+                                        context, "/signupEmail");
+                                  }),
 
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(15, 25, 15, 0),

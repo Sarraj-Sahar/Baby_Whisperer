@@ -25,20 +25,25 @@ const InputDecoration otpInputDecoration = InputDecoration(
   hintText: "0",
 );
 
-InputDecoration formInputDecoration = InputDecoration(
-    focusColor: kprimaryColor.withOpacity(0.2),
-    disabledBorder: InputBorder.none,
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: BorderSide(color: Colors.grey),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: kprimaryColor),
-      borderRadius: BorderRadius.circular(10.0),
-    )
-    // enabledBorder: UnderlineInputBorder(
-    //   borderSide: BorderSide(color: Colors.grey),
-    //   borderRadius: BorderRadius.circular(10.0),
-    // ),
-    // fillColor: kprimaryColor.withOpacity(0.2),
+class FormInputDecoration {
+  static InputDecoration textFieldStyle(
+      {String labelTextStr = "", String hintTextStr = ""}) {
+    return InputDecoration(
+      fillColor: Colors.white,
+      filled: true,
+      focusColor: kprimaryColor.withOpacity(0.2),
+      disabledBorder: InputBorder.none,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: kprimaryColor),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      contentPadding: EdgeInsets.all(12),
+      labelText: labelTextStr,
+      hintText: hintTextStr,
     );
+  }
+}

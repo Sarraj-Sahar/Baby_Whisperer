@@ -3,8 +3,13 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:baby_cry/repositories/user_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserProvider with ChangeNotifier {
+final userProvider = ChangeNotifierProvider<UserProvider>((ref) {
+  return UserProvider();
+});
+
+class UserProvider extends ChangeNotifier {
   final _userRepositiry = UserRepository();
 
   bool _isLoading = false;
@@ -50,6 +55,9 @@ class UserProvider with ChangeNotifier {
     final user = await _userRepositiry.getCurrentUser();
     _currentUser = user;
     _setIsLoading(false);
+    //Temp : attempting to reactivate the DataStore sync
+    print("Awaitingggggg Amplify.DataStore.start()");
+    await Amplify.DataStore.start();
     return response;
   }
 
@@ -69,6 +77,10 @@ class UserProvider with ChangeNotifier {
       final response = await _userRepositiry.signOut();
       _currentUser = null;
       _setIsLoading(false);
+      //Temp : clearing store
+      print('LOGGING OUTTTT');
+      await Amplify.DataStore.clear();
+      //
       return right(response);
     } on AuthException catch (e) {
       _setIsLoading(false);

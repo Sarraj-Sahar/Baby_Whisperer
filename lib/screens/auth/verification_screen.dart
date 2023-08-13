@@ -1,18 +1,20 @@
+import 'package:baby_cry/screens/home/home_screen.dart';
 import 'package:baby_cry/screens/profile/baby_profile.dart';
-import 'package:baby_cry/shared/constants.dart';
-import 'package:baby_cry/shared/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import '../../providers/user_provider.dart';
 import 'components/logo_with_title.dart';
+import 'package:baby_cry/shared/shared.dart';
 import 'sign_in_screen.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key, required this.username})
+  const VerificationScreen(
+      {Key? key, required this.username, required this.password})
       : super(key: key);
 
   final String username;
+  final String password;
 
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
@@ -50,9 +52,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                final result = await context
-                    .read<UserProvider>()
-                    .confirmSignUp(username: widget.username, code: _otpCode);
+                final result = await context.read<UserProvider>().confirmSignUp(
+                    username: widget.username,
+                    password: widget.password,
+                    code: _otpCode);
                 result.fold(
                   (error) => context.showError(error),
                   (isConfirmed) {
@@ -63,12 +66,18 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           action: SnackBarAction(
                             label: "complete profile",
                             onPressed: () {
+                              //TAKEOFF : automatic sign in after succesful sign up
+                              //  SignInForm().signIn(
+                              //       username: widget.username,
+                              //       password: widget.password);
+                              /////////////////
+
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SignInScreen(),
-
-                                  // const BabyProfileScreen(),
+                                  builder: (context) => HomeScreen(
+                                    selectedIndex: 1,
+                                  ),
                                 ),
                                 (route) => false,
                               );

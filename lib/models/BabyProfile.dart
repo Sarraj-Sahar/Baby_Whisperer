@@ -34,6 +34,9 @@ class BabyProfile extends Model {
   final String? _gender;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
+  // final int _version;
+  // final bool? _deleted;
+  // final TemporalDateTime? _lastChangedAt;
 
   @override
   getInstanceType() => classType;
@@ -188,7 +191,7 @@ class BabyProfile extends Model {
   }
 
   BabyProfile copyWith({
-    required String id,
+    // required String id,
     String? name,
     TemporalDate? birthday,
     String? country,
@@ -261,7 +264,7 @@ class BabyProfile extends Model {
           ownerField: "owner",
           identityClaim: "cognito:username",
           provider: AuthRuleProvider.USERPOOLS,
-          operations: [
+          operations: const [
             ModelOperation.CREATE,
             ModelOperation.UPDATE,
             ModelOperation.DELETE,

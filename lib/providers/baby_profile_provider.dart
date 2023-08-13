@@ -1,3 +1,5 @@
+//The layer to connect with the Amplify backend.
+
 // Creating a profileDataStoreServiceProvider which will contain the
 // listenToProfile() and updateProfile() functions
 
@@ -15,12 +17,14 @@ class ProfileDataStoreService {
   ProfileDataStoreService();
 
   //Listening to any changes in BabyProfile using Amplify's DataStore
+  //This function will query the Amplify DataStore for the babyProfile
   Stream<BabyProfile> listenToProfile() {
     return Amplify.DataStore.observeQuery(
       BabyProfile.classType,
     ).map((event) => event.items.first).handleError(
       (dynamic error) {
-        debugPrint('listenToProfile: A Stream error happened');
+        debugPrint(
+            'listenToProfile: A Stream error happened \n //////// $error');
       },
     );
   }
@@ -35,7 +39,6 @@ class ProfileDataStoreService {
 
       final oldProfile = profileWithId.first;
       final newProfile = oldProfile.copyWith(
-        id: oldProfile.id,
         name: updatedProfile.name,
         birthday: updatedProfile.birthday,
         country: updatedProfile.country,

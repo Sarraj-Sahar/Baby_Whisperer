@@ -1,5 +1,5 @@
 import 'package:baby_cry/screens/auth/sign_up_email_screen.dart';
-import 'package:baby_cry/shared/constants.dart';
+import 'package:baby_cry/shared/shared.dart';
 import 'package:flutter/material.dart';
 
 import 'components/sign_in_form.dart';

@@ -1,28 +1,28 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:baby_cry/providers/user_provider.dart';
 import 'package:baby_cry/screens/home/home_screen.dart';
-import 'package:baby_cry/shared/constants.dart';
-import 'package:baby_cry/shared/extentions.dart';
+import 'package:baby_cry/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
-class SignInForm extends StatefulWidget {
+class SignInForm extends ConsumerStatefulWidget {
   const SignInForm({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  ConsumerState<SignInForm> createState() => _SignInFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignInFormState extends ConsumerState<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   late String _username, _password;
 
   void signIn({required String username, required String password}) async {
-    final signInResponse = await context
-        .read<UserProvider>()
+    final signInResponse = await ref
+        .read(userProvider)
         .signIn(username: username, password: password);
 
     signInResponse.fold(
@@ -32,7 +32,9 @@ class _SignInFormState extends State<SignInForm> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => HomeScreen(
+                selectedIndex: 0,
+              ),
             ),
             (route) => false,
           );
@@ -98,7 +100,7 @@ class _SignInFormState extends State<SignInForm> {
                 signIn(username: _username, password: _password);
               }
             },
-            child: context.watch<UserProvider>().isLoading
+            child: ref.watch(userProvider).isLoading
                 ? const CircularProgressIndicator(color: Colors.white)
                 : const Text("Sign In"),
           ),

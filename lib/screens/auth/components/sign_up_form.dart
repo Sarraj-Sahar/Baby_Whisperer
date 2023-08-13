@@ -2,8 +2,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:baby_cry/providers/user_provider.dart';
 import 'package:baby_cry/screens/auth/sign_in_screen.dart';
 import 'package:baby_cry/screens/auth/verification_screen.dart';
-import 'package:baby_cry/shared/constants.dart';
-import 'package:baby_cry/shared/extentions.dart';
+import 'package:baby_cry/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,10 @@ class _SignUpFormState extends State<SignUpForm> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => VerificationScreen(username: username),
+              builder: (context) => VerificationScreen(
+                username: username,
+                password: password,
+              ),
             ),
           );
         }
