@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-babycry-staging-132131-authRole",
+      "UnauthRoleArn": "arn:aws:iam::663149949133:role/amplify-babycry-staging-132131-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::663149949133:role/amplify-babycry-staging-132131-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-babycry-staging-132131-deployment",
+      "UnauthRoleName": "amplify-babycry-staging-132131-unauthRole",
+      "StackName": "amplify-babycry-staging-132131",
+      "StackId": "arn:aws:cloudformation:eu-central-1:663149949133:stack/amplify-babycry-staging-132131/51509d10-39dc-11ee-ae9a-02687cb61bd2",
+      "AmplifyAppId": "d3r32q4s1ib8tw"
+    }
+  }
+}
