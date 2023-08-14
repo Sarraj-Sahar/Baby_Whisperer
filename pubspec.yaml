@@ -51,6 +51,14 @@ dependencies:
   dartz: ^0.10.1
   provider: ^6.0.5
   google_nav_bar: ^5.0.6
+  flutter_sound: ^9.2.13
+  assets_audio_player: ^3.1.0
+  intl: ^0.17.0
+  permission_handler: ^8.1.2
+  path: ^1.8.0
+
+
+
 
 dev_dependencies:
   flutter_test:

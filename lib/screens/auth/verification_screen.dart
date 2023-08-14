@@ -1,14 +1,12 @@
+import 'package:baby_cry/providers/user_provider.dart';
 import 'package:baby_cry/screens/home/home_screen.dart';
-import 'package:baby_cry/screens/profile/baby_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:provider/provider.dart';
-import '../../providers/user_provider.dart';
 import 'components/logo_with_title.dart';
 import 'package:baby_cry/shared/shared.dart';
-import 'sign_in_screen.dart';
 
-class VerificationScreen extends StatefulWidget {
+class VerificationScreen extends ConsumerStatefulWidget {
   const VerificationScreen(
       {Key? key, required this.username, required this.password})
       : super(key: key);
@@ -20,7 +18,7 @@ class VerificationScreen extends StatefulWidget {
   _VerificationScreenState createState() => _VerificationScreenState();
 }
 
-class _VerificationScreenState extends State<VerificationScreen> {
+class _VerificationScreenState extends ConsumerState<VerificationScreen> {
   final _formKey = GlobalKey<FormState>();
   late String _otpCode;
   @override
@@ -52,7 +50,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                final result = await context.read<UserProvider>().confirmSignUp(
+                final result = await ref.read(userProvider).confirmSignUp(
                     username: widget.username,
                     password: widget.password,
                     code: _otpCode);
@@ -90,7 +88,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 );
               }
             },
-            child: context.watch<UserProvider>().isLoading
+            child: ref.watch(userProvider).isLoading
                 ? const CircularProgressIndicator(color: Colors.white)
                 : const Text("Validate"),
           ),

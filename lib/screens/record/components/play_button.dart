@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 class PlayButton extends StatefulWidget {
   final bool initialIsPlaying;
@@ -13,7 +15,7 @@ class PlayButton extends StatefulWidget {
     this.initialIsPlaying = false,
     this.playIcon = const Icon(Icons.mic),
     this.pauseIcon = const Icon(Icons.mic),
-  }) : assert(onPressed != null);
+  });
 
   @override
   _PlayButtonState createState() => _PlayButtonState();
@@ -63,6 +65,12 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
     widget.onPressed();
   }
 
+  //void start recording
+  void _startRecording() {}
+
+  //void stop recording
+  void _stopRecording() {}
+
   Widget _buildIcon(bool isPlaying) {
     return SizedBox.expand(
       key: ValueKey<bool>(isPlaying),
@@ -82,16 +90,6 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
           alignment: Alignment.center,
           children: [
             if (_showWaves) ...[
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 30.0),
-              //   child: Align(
-              //     alignment: AlignmentDirectional.topCenter,
-              //     child: Text(
-              //       "Recording...",
-              //       style: TextStyle(color: Colors.grey[850], fontSize: 50),
-              //     ),
-              //   ),
-              // ),
               Blob(
                   color: Color(0xff0092ff), scale: _scale, rotation: _rotation),
               Blob(
@@ -115,7 +113,6 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            //Align 's default alignment is center
             Align(
               child: Container(
                 // constraints: BoxConstraints.expand(),

@@ -1,16 +1,3 @@
-// import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-// import 'package:amplify_flutter/amplify_flutter.dart';
-// import 'package:baby_cry/providers/user_provider.dart';
-// import 'package:baby_cry/screens/auth/sign_in_screen.dart';
-// import 'package:baby_cry/screens/auth/sign_up_email_screen.dart';
-// import 'package:baby_cry/screens/home/home_screen.dart';
-// import 'package:baby_cry/shared/constants.dart';
-// import 'package:baby_cry/widgets/round_tile.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-// import 'components/build_splash_page.dart';
-
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:baby_cry/providers/user_provider.dart';
 import 'package:baby_cry/screens/auth/sign_in_screen.dart';

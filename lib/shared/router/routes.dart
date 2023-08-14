@@ -5,4 +5,5 @@ enum AppRoute {
   verification,
   home,
   babyprofile,
+  testEntity,
 }

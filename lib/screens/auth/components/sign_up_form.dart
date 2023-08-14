@@ -5,24 +5,24 @@ import 'package:baby_cry/screens/auth/verification_screen.dart';
 import 'package:baby_cry/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends ConsumerStatefulWidget {
   const SignUpForm({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
+  ConsumerState<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _SignUpFormState extends ConsumerState<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   late String _username, _email, _password;
 
   void signUp(String username, String password, String email) async {
     final signUpResult =
-        await context.read<UserProvider>().signUp(username, password, email);
+        await ref.read(userProvider).signUp(username, password, email);
     signUpResult.fold(
       (error) => context.showError(error),
       (step) {
@@ -121,7 +121,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   signUp(_username, _password, _email);
                 }
               },
-              child: context.watch<UserProvider>().isLoading
+              child: ref.watch(userProvider).isLoading
                   ? const CircularProgressIndicator(color: Colors.white)
                   : const Text("Sign Up"),
             ),

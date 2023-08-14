@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "babycry",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authbabycryc2700b14",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

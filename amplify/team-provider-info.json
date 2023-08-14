@@ -10,6 +10,15 @@
       "StackName": "amplify-babycry-staging-132131",
       "StackId": "arn:aws:cloudformation:eu-central-1:663149949133:stack/amplify-babycry-staging-132131/51509d10-39dc-11ee-ae9a-02687cb61bd2",
       "AmplifyAppId": "d3r32q4s1ib8tw"
+    },
+    "categories": {
+      "auth": {
+        "BabyCry": {},
+        "babycryc2700b14": {}
+      },
+      "api": {
+        "babycry": {}
+      }
     }
   }
 }

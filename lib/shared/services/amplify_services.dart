@@ -10,16 +10,16 @@ Future<void> configureAmplify() async {
   await Amplify.addPlugins([
     // Create the Auth plugin.
     AmplifyAuthCognito(),
-    // Added the Amplify DataStore (on-device storage engine that synchronizes data between the mobile phone and the database in the AWS Cloud)
+    // Added the Amplify DataStore
     AmplifyDataStore(modelProvider: ModelProvider.instance),
     // Create the API plugin.
-    AmplifyAPI(modelProvider: ModelProvider.instance),
+    AmplifyAPI(),
   ]);
   // Once Plugins are added, configure Amplify
   // Note: Amplify can only be configured once.
   try {
     await Amplify.configure(amplifyconfig);
   } catch (e) {
-    print("Amplify is already configured");
+    print("Amplify is already configured error : /// $e");
   }
 }

@@ -1,5 +1,7 @@
+import 'package:baby_cry/baby_profile/ui/add_baby_sheet.dart';
+import 'package:baby_cry/baby_profile/ui/baby_profile_screen.dart';
 import 'package:baby_cry/controllers/baby_profile_controller.dart';
-import 'package:baby_cry/screens/profile/baby_profile.dart';
+// import 'package:baby_cry/screens/profile/baby_profile.dart';
 import 'package:baby_cry/screens/record/record_cry_screen.dart';
 import 'package:baby_cry/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -42,14 +44,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final profileValue = ref.watch(profileProvider);
+    // final profileValue = ref.watch(profileProvider);
 
     //pages to display
     final List<Widget> _pages = [
       const RecordCryScreen(),
-      BabyProfileScreen(
-          // babyProfile: profileValue.value,
-          )
+      // BabyProfileScreen(
+      //     // babyProfile: profileValue.value,
+      //     )
+      BabyProfilePage(),
+      // AddBabyBottomSheet(),
     ];
 
     return Scaffold(
@@ -60,8 +64,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           selectedIndex: widget.selectedIndex,
           onTabChange: (index) {
             setState(() {
-              print(
-                  "NAVIGATINGGG BOTTOM bar , babyProfile is : ${ref.read(profileProvider)}");
+              // print(
+              //     "NAVIGATINGGG BOTTOM bar , babyProfile is : ${ref.read(profileProvider)}");
               widget.selectedIndex = index;
             });
           },
@@ -84,9 +88,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       // body: _pages[widget.selectedIndex],
       body: widget.selectedIndex == 0
           ? RecordCryScreen()
-          : BabyProfileScreen(
-              // babyProfile: profile,
-              ),
+          // : BabyProfileScreen(
+          //     // babyProfile: profile,
+          //     ),
+          : BabyProfilePage(),
+      // : AddBabyBottomSheet(),
       // : profileValue.when(
       //     data: (profile) => BabyProfileScreen(
       //         // babyProfile: profile,
